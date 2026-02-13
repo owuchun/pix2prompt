@@ -19,7 +19,7 @@
 1.  将 `pix2prompt` 文件夹放入技能目录：
     *   Windows: `C:/Users/[Username]/.agents/skills/`
     *   Mac/Linux: `~/.agents/skills/`
-2.  **关键步骤**: 确保 `references/` 文件夹内包含风格库 JSON 文件 (需从 Nano Skill 复制)。
+2.  **关键步骤**: 确保 `references/` 文件夹内包含风格库 JSON 文件。
 
 ## 🎮 使用 (Usage)
 
@@ -38,6 +38,41 @@
 > 0-3s: [Low Angle Tracking], Motorcycle wheels spinning with neon trails...
 > 3-7s: [POV Shot], Rider dodging flying cars in the rain...
 > ```
+
+## 🌈 风格测试案例：多巴胺少女风 (Dopamine Girl Showcase)
+
+以下展示了 Pix2Prompt 在生成特定风格（多巴胺少女风）时的生图与视频生成提示词。
+
+### 1. 中文绘画 AI (豆包 / 千问) - 绘画提示词
+> **Input**: "帮我生成一张多巴胺少女的绘画提示词，要高清写实，色彩鲜艳。"
+> **Output**:
+> **绘画提示词**:
+> 极其细腻的写实画质，8k分辨率，电影级光影。一位充满青春活力的多巴胺女孩，身穿亮黄色的oversized卫衣搭配粉色短裤，戴着彩虹色的串珠项链和夸张的爱心墨镜。她手里拿着一支巨大的彩色棒棒糖，脸上洋溢着灿烂的笑容，嘴角有可爱的小酒窝。背景是阳光明媚的游乐园，色彩鲜艳饱和，周围有飞舞的彩色纸屑，逆光拍摄，发丝边缘有金色的轮廓光，景深柔和虚化。整体氛围活泼、快乐、治愈。
+
+### 2. 英文绘画 AI (Nano / Midjourney) - Image Prompt
+> **Input**: "Generate a prompt for a Dopamine Girl image, high quality."+穿黄色卫衣女孩.jpg
+> **Output**:
+> **Positive Prompt**: (best quality, masterpiece, photorealistic:1.3), 1girl, solo, dopamine style, vibrant colors, energetic pose, smiling brightly, wearing oversized neon green hoodie and hot pink shorts, colorful plastic hair clips, rainbow beaded necklace, holding a melting ice cream cone, amusement park background, sunny day, lens flare, sharp focus, 8k resolution, cinematic lighting. --ar 3:4 --v 6.0
+> **Negative Prompt**: (worst quality, low quality:1.4), text, watermark, signature, blurry, deformed, bad anatomy, disfigured, dull colors, monochrome, dark, gloomy.
+
+### 3. 中文视频 AI (即梦 / 可灵) - 视频分镜提示词
+> **Input**: "生成一段15秒的多巴胺少女风视频分镜脚本，要求竖屏、高饱和度。"+穿粉色卫衣女孩.jpg
+> **Output**:
+> **【整体描述】** 活力多巴胺少女风格，15秒，竖屏9:16，高饱和糖果色与霓虹光效。
+> *   **0-2秒 | 开场冲击**: 特写推镜，少女脸部特写，粉色爱心贴纸从眼角滑落，眼睛闪烁星星光效。
+> *   **2-5秒 | 活力展示**: 中景环绕，少女穿着oversized彩色卫衣在涂鸦墙前跳跃，头发飞扬，背景霓虹闪烁。
+> *   **6-10秒 | 动感高潮**: 全景快切，粉色房间→黄色旋转木马→蓝色泳池，少女在不同场景舞蹈，每秒快切。
+> *   **13-15秒 | 收尾定格**: 特写定格，少女比剪刀手，背景霓虹灯牌"DOPAMINE"，画面闪白结束。
+> *   **声音**: Hyperpop电子舞曲 (BPM 128) + 气泡破裂音效。
+
+### 4. 英文视频 AI (Sora / Voe) - Video Prompt
+> **Input**: "Generate a video prompt for a Dopamine Girl style video."
+> **Output**:
+> **Video Prompt**: A photorealistic, cinematic video in a vertical 9:16 format. The style is "Dopamine Girl," featuring high-saturation candy colors and neon lighting.
+> *   **Scene**: A young energetic girl in a colorful oversized hoodie dancing in front of a graffiti wall.
+> *   **Action**: The camera performs a dynamic orbiting shot around her as she jumps and laughs. Confetti rains down in slow motion.
+> *   **Lighting**: Bright sunlight mixed with neon pink and blue fill lights.
+> *   **Details**: High fidelity textures on clothing, hair moving naturally with the wind. The video has a joyful, energetic atmosphere typical of a music video.
 
 ## 🛠️ 目录结构
 ```text
