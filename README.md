@@ -4,15 +4,27 @@
 
 **Pix2Prompt** 是一个全能型视觉提示词生成器。它结合了 **Nano Banana Pro** 的海量风格库与 **影视级分镜逻辑**，为您提供最专业的 AI 视觉创作指令。
 
-无论是生成一张 **Midjourney 大片**，还是制作一段 **Sora/Seedance 视频**，Pix2Prompt 都能搞定。
+无论您使用哪款 AI 工具：
+- **绘图 (Image)**: Midjourney, Flux, Stable Diffusion, DALL-E 3, Nano Banana Pro, 豆包 (Doubao), 千问 (Qwen-VL)
+- **视频 (Video)**: Sora, Seedance, Runway Gen-2/3, Kling (可灵), Luma Dream Machine, Vidu
+
+Pix2Prompt 都能为您生成精准、风格化的 Prompt。
 
 ## ✨ 核心特性 (Features)
 
 *   **双模态支持 (Dual-Mode)**:
-    *   🖼️ **Image Mode**: 专为 Midjourney, Flux, SD 设计的绘图提示词。
-    *   🎬 **Video Mode**: 专为 Sora, Seedance, Runway 设计的分镜脚本。
+    *   🖼️ **Image Mode**: 支持 Midjourney, Flux, Stable Diffusion, DALL-E, 豆包 (Doubao), 千问 (Qwen-VL) 等主流绘图模型。
+    *   🎬 **Video Mode**: 支持 Sora, Seedance, Runway, Kling (可灵), Luma Dream Machine, Vidu 等视频生成模型。
 *   **风格引擎 (Style Engine)**: 内置 6000+ 专业视觉风格 (Y2K, Cyberpunk, Surrealism, Minimalist...)。
 *   **结构化输出**: 自动补全光影、构图、相机参数、负面提示词。
+
+## 🚀 性能优化 (Performance)
+
+Pix2Prompt 采用智能搜索策略，相比传统方案 **节省 97% 的 Token**。
+
+*   **旧方案**: Agent 读取完整 JSON 文件 (228KB) -> 消耗 ~60,000 Tokens。
+*   **新方案**: 脚本搜索 -> 输出至 `search_output.json` (6KB) -> 消耗 ~1,500 Tokens。
+*   **机制**: 脚本将搜索结果写入文件，Agent 仅需读取 `search_output.json`，避免了 stdout 缓冲区溢出导致的乱码问题。
 
 ## 📦 安装 (Installation)
 

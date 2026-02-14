@@ -17,11 +17,34 @@ This skill serves as your **Visual Director**, converting abstract ideas into hi
 2.  **🎬 Video Mode**: Generates cinematic storyboards for Sora, Seedance, Runway, Kling.
 3.  **🎨 Style Engine**: Powered by **Nano Banana Pro Library** (6000+ Styles).
 
+**Quick Navigation:**
+- For Image Prompts → See [Mode 1: Image Generation](#mode-1-🖼️-image-generation-static) (Line 23)
+- For Video Storyboards → See [Mode 2: Video Storyboard](#mode-2-🎬-video-storyboard-dynamic) (Line 62)
+- For Search Logic → See [Step 1: Style Discovery](#step-1-style-discovery-the-nano-engine---intelligent-search) (Line 170)
+
 ---
 
 ## 🛠️ Usage Modes
 
 ### Mode 1: 🖼️ Image Generation (Static)
+
+**CRITICAL RULES:**
+
+1.  **Product-Context Adaptation (产品语境适配)**:
+    - **Do NOT blindly copy prompt objects!** Adapt them to the User's Product.
+    - *Example*: If prompt has "glass cup" but user asks for "Latte", change to "Ceramic Mug" or "Paper Cup" (glass is rare for hot latte).
+    - *Example*: If prompt has "wine glass" but user asks for "Soda", change to "Highball Glass" or "Can".
+    - **Logic**: Style (Lighting/Composition) = Keep; Object (Cup/Table/Prop) = Adapt to Product.
+
+2.  **Doubao-Specific Formatting (豆包专用规则)**:
+    - **No Hex Codes in Main Description**: Do NOT use `#FFFFFF` in the main text (Doubao might draw the text!). Use "纯白" instead.
+    - **Hex Codes in Palette Only**: Only list color codes in the "配色方案" section at the bottom.
+    - **Language**: Must be 100% Chinese for Doubao.
+
+**Template Strategy**:
+- **Nano Banana Pro**: English, precise parameters.
+- **Midjourney**: English, artistic style keywords (--v 6.0).
+- **Doubao/Tongyi**: Chinese, descriptive, NO hex codes in body.
 
 **Goal**: Create stunning single-frame visuals.
 
@@ -80,26 +103,61 @@ Agent must identify the video type and select the correct template:
 **Step 2: Generate Storyboard**
 
 #### **Template A: Narrative/Commercial (标准叙事/广告)**
-```text
-【整体描述】[风格], [时长], [画幅], [氛围]
 
-0-3秒: [运镜描述]。[画面内容描述，包含主体和环境]。
+**完整输出格式**:
+
+```text
+🎬 [风格名称] 视频提示词
+
+【整体描述】
+[风格], [时长], [画幅], [氛围], [光影特点]
+
+【分镜描述】
+
+0-3秒 | [镜头主题]
+[详细运镜描述: 机位、运动方式、焦点变化]。[画面内容: 主体动作、环境细节、特效]。
 音效: [配乐风格] + [具体音效]
 
-3-7秒: [运镜描述]。[画面内容描述]。
+3-7秒 | [镜头主题]
+[运镜描述: 包含特殊运镜技巧如希区柯克变焦、环绕拍摄等]。[画面内容: 细节展示]。
 音效: [具体音效]
 
-7-11秒: [运镜描述]。[画面内容描述]。
+7-11秒 | [镜头主题]
+[运镜描述]。[画面内容: 动作演绎、背景特效如Glitch、柔光滤镜]。
 音效: [具体音效]
 
-11-13秒: [运镜描述]。[画面内容描述]。
+11-13秒 | [镜头主题]
+[运镜描述]。[画面内容: 情绪变化、氛围转换]。
 音效: [具体音效]
 
-13-15秒: [运镜描述]。[画面内容描述]。
+13-15秒 | [镜头主题]
+[运镜描述]。[画面内容: 定格、Logo展示、结束特效]。
 音效: [具体音效]
 
-【参考】@图片1 作为首帧，@视频1 参考运镜 (如有)
+【参考】
+@图片1 作为首帧，@视频1 参考运镜 (如有)
+
+【声音设计】
+
+配乐风格: [具体音乐风格，如Trap Beat、K-pop、Lo-fi等]
+
+音效设计:
+- [特定动作的音效1]
+- [特效出现的音效2]
+- [转场音效3]
+- [定格/结束音效]
+
+【使用建议】
+1. 复制【分镜描述】到平台(Sora/Seedance/Runway等)
+2. 上传原图作为 @图片1
+3. [其他建议，如添加辅助参考图等]
 ```
+
+**关键要求**:
+- **运镜细节**: 必须包含具体的运镜技巧(推拉摇移、特殊镜头)
+- **特效描述**: 明确特效类型(Glitch、滤镜、动画元素等)
+- **声音设计**: 完整的配乐和音效说明
+- **使用建议**: 实用的操作指导
 
 #### **Template B: Motion/Reference Clone (运镜复刻/延长)**
 ```markdown
@@ -125,24 +183,87 @@ Agent must identify the video type and select the correct template:
 
 ## 🔍 Internal Logic (How it works)
 
-### Step 1: Style Discovery (The "Nano" Engine)
+### Step 1: Style Discovery (The "Nano" Engine) - Intelligent Search
 
-**Smart Routing**: The skill uses **Category Signal Mapping** to search the most relevant JSON file first, ensuring high-quality style matches.
+**Token-Optimized Search Strategy**: This skill uses a **smart scoring system** to minimize token consumption.
 
-| User Request Signals | Target Category File |
-|---------------------|----------------------|
-| avatar, profile, headshot, selfie | `profile-avatar.json` |
-| post, social media, viral, instagram | `social-media-post.json` |
-| infographic, chart, data, edu | `infographic-edu-visual.json` |
-| youtube, thumbnail, cover | `youtube-thumbnail.json` |
-| comic, manga, storyboard, panel | `comic-storyboard.json` |
-| product, ad, marketing, sale | `product-marketing.json` |
-| game, asset, sprite, character | `game-asset.json` |
-| poster, flyer, event, banner | `poster-flyer.json` |
-| **Default / Unsure** | `others.json` |
+#### 🚀 Option A: Automated Script Search (Recommended)
 
-*   **Search Logic**: `grep "keyword" references/[Category-File]`
-*   **Fallback**: If no match in specific category, search `others.json`.
+**Best for AI agents** - Use the intelligent search script for maximum efficiency.
+
+**Usage** (AI must analyze and assign weights):
+```bash
+# AI should analyze user intent and call with weighted keywords:
+node scripts/search-prompts.js "minimalist:2 coffee:0.3 poster:1"
+
+# Format: keyword:weight keyword:weight ...
+# Weights determine importance in search scoring
+```
+
+**Process**:
+1. **AI analyzes user query** and identifies keyword types
+2. **AI assigns weights** based on keyword categories (see guide below)
+3. Script scores categories and prompts using weighted keywords
+4. Returns randomized selection from top 10 matches (top 3 prompts)
+
+**Output**: JSON written to `search_output.json` (Agent MUST read this file).
+
+**Token Savings**: ~1.5KB total **(92% reduction)**
+
+**CRITICAL - Diversity Requirements**:
+- Script returns **randomized selection** from top candidates (increases variety)
+- Do NOT copy prompt contents verbatim
+- Extract **core style elements** from prompts and **creatively combine** them
+- Generate unique compositions even for similar queries
+- If user requests "different versions", run script multiple times or explore related keywords
+
+**AI Weight Assignment Guide**:
+
+You (AI) must analyze keywords and assign appropriate weights when calling the script:
+
+- **Style keywords** (×2.0): Descriptive adjectives defining aesthetic
+  - minimalist, modern, vintage, retro, cyberpunk, futuristic, traditional, elegant, luxury, clean, simple, abstract, geometric, organic, industrial, y2k, dopamine, glitch, neon, gradient, monochrome, colorful, pastel, dark, light, soft, bold, vibrant
+  - 极简, 简约, 现代, 复古, 赛博朋克, 未来, 传统, 优雅, 奢华, 干净, 抽象, 几何, 自然, 工业, 多巴胺, 霓虹, 渐变, 单色, 多彩, 马卡龙, 暗黑, 明亮, 柔和, 大胆, 鲜艳, 中国
+
+- **Product keywords** (×0.3): Specific product/subject names
+  - coffee, tea, wine, beer, juice, milk, bread, cake, car, phone, laptop, watch, bag, shoe, clothes
+  - 咖啡, 茶, 茶叶, 酒, 啤酒, 果汁, 牛奶, 面包, 蛋糕, 汽车, 手机, 笔记本, 手表, 包, 鞋, 衣服
+
+- **Category keywords** (×1.0): Format/medium types
+  - poster, logo, banner, flyer, card, cover, thumbnail, avatar, icon, storyboard
+  - 海报, 标志, 横幅, 传单, 卡片, 封面, 缩略图, 头像, 图标, 分镜
+
+**Example Analysis**:
+- User: "极简咖啡海报" → AI calls: `"minimalist:2 coffee:0.3 poster:1"`
+- User: "复古汽车广告" → AI calls: `"vintage:2 car:0.3 ad:1"`
+- User: "现代logo设计" → AI calls: `"modern:2 logo:1"`
+
+**Why This Matters**:
+- Ensures "minimalist coffee" and "minimalist tea" return similar style-focused results
+- Style drives the search, product is secondary detail
+- AI can adapt to any new keywords without script modification
+
+#### 📋 Option B: Manual Two-Phase Search (Fallback)
+
+If script is unavailable, use manual search:
+
+**Phase 1: Find Best Category**
+*   Search `style-summary.json` for keywords
+*   Score each category by keyword matches
+*   Identify category with highest score
+
+**Phase 2: Load Top Prompts**
+*   Search the selected category file
+*   Score all prompts by keyword matches
+*   Load top 3 prompts by score
+
+**Token Savings**: ~5-8KB total **(60-73% reduction)**
+
+#### 🔍 Option C: Simple Grep (Emergency Fallback)
+
+Direct search in category files when other methods unavailable.
+
+**Token Consumption**: ~18KB (no optimization)
 
 ### Step 2: Prompt Synthesis & Multi-modal Input
 It combines the **User's Subject** with the **Found Style**, **Technical Parameters**, and **Uploaded Materials**.

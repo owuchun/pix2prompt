@@ -4,15 +4,29 @@
 
 **Pix2Prompt** is a versatile visual prompt generation Skill. It combines the massive style library of **Nano Banana Pro** with **cinematic storyboard logic** to provide you with professional AI visual creation instructions.
 
-Whether it's generating a **Midjourney masterpiece** or creating a **Sora/Seedance video**, Pix2Prompt has you covered.
+No matter which AI tool you use:
+- **Image**: Midjourney, Flux, Stable Diffusion, DALL-E 3, Nano Banana Pro, Doubao, Qwen-VL
+- **Video**: Sora, Seedance, Runway Gen-2/3, Kling, Luma Dream Machine, Vidu
+
+Pix2Prompt has you covered.has you covered.
+
+## ✨ Core Features
 
 ## ✨ Core Features
 
 *   **Dual-Mode Support**:
-    *   🖼️ **Image Mode**: Prompt design specifically for Midjourney, Flux, and SD.
-    *   🎬 **Video Mode**: Storyboard scripts specifically for Sora, Seedance, and Runway.
+    *   🖼️ **Image Mode**: Supports Midjourney, Flux, Stable Diffusion, DALL-E, Doubao, Qwen-VL, etc.
+    *   🎬 **Video Mode**: Supports Sora, Seedance, Runway, Kling, Luma Dream Machine, Vidu, etc.
 *   **Style Engine**: Built-in 6000+ professional visual styles (Y2K, Cyberpunk, Surrealism, Minimalist...).
 *   **Structured Output**: Automatically completes lighting, composition, camera parameters, and negative prompts.
+
+## 🚀 Performance
+
+Pix2Prompt uses an intelligent search strategy that **saves 97% of Tokens** compared to traditional methods.
+
+*   **Legacy Method**: Agent reads the full JSON file (228KB) -> Consumes ~60,000 Tokens.
+*   **New Method**: Script search -> Output to `search_output.json` (6KB) -> Consumes ~1,500 Tokens.
+*   **Mechanism**: The script writes search results to a file, and the Agent only reads `search_output.json`, avoiding terminal buffer overflow issues and ensuring clean data.
 
 ## 📦 Installation
 
